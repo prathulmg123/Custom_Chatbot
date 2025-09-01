@@ -1,0 +1,13 @@
+To Run the Application​
+​
+How It Works
+This tool helps users upload a PDF and get a short summary of its content.
+When a user uploads a PDF file through the Streamlit interface, the app reads
+and extracts all the text from the file using a library called PyMuPDF. If the text is
+too long, it breaks it into smaller parts so that the summarization model can
+handle it easily.
+Each part is then sent to a pre-trained AI model (like BART or T5 from Hugging
+Face) that reads the text and creates a short summary. After all parts are
+summarized, the app combines them into one final summary and shows it to the
+user. This way, users can quickly understand long PDFs without reading the
+whole thing.

@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-multipart
+langchain-core>=0.2.0
+langchain-community>=0.2.0
+chromadb>=0.4.22
+pypdf
+sentence-transformers>=2.2.2
+langchain-chroma>=0.2.0
+langchain-ollama>=0.2.0
+tiktoken
