@@ -31,6 +31,7 @@ function App() {
   const [sources, setSources] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isFileUploaded, setIsFileUploaded] = useState(false);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -53,7 +54,7 @@ function App() {
         },
       });
       
-      toast.success(`Processed ${response.data.chunks_added} chunks from ${file.name}`, {
+      toast.success(`Successfully file uploaded`, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -64,6 +65,7 @@ function App() {
       
       setFile(null);
       document.getElementById('file-upload').value = '';
+      setIsFileUploaded(true);
     } catch (error) {
       console.error('Error uploading file:', error);
       toast.error(error.response?.data?.detail || 'Failed to process document', {
@@ -123,6 +125,7 @@ function App() {
     setQuestion('');
     setAnswer('');
     setSources([]);
+    setIsFileUploaded(false);
   };
 
   // Styled components
@@ -185,6 +188,7 @@ function App() {
 
               <Divider />
 
+              {isFileUploaded && (
               <Box>
                 <Typography variant="subtitle1" gutterBottom>
                   Ask a question about the document
@@ -218,6 +222,7 @@ function App() {
                   </IconButton>
                 </Box>
               </Box>
+              )}
             </Box>
           </Paper>
 
