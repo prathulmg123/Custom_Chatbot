@@ -13,7 +13,8 @@ import {
   Typography, 
   CircularProgress,
   IconButton,
-  Divider
+  Divider,
+  Backdrop
 } from '@mui/material';
 import { 
   Upload as UploadIcon, 
@@ -142,7 +143,30 @@ function App() {
   });
 
   return (
-    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', py: 4 }}>
+    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', py: 4, position: 'relative' }}>
+      <Backdrop
+        sx={{ 
+          color: '#fff',
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 2
+        }}
+        open={isLoading || isProcessing}
+      >
+        <CircularProgress color="inherit" />
+        <Typography variant="h6" color="white">
+          {isProcessing ? 'Processing your document...' : 'Generating answer...'}
+        </Typography>
+      </Backdrop>
       <Container maxWidth="md">
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           <Box sx={{ textAlign: 'center' }}>
@@ -245,7 +269,7 @@ function App() {
                     </Box>
                   )}
 
-                  {sources.length > 0 && (
+                  {/* {sources.length > 0 && (
                     <Box>
                       <Typography variant="h6" gutterBottom>
                         Sources:
@@ -270,7 +294,7 @@ function App() {
                         ))}
                       </Box>
                     </Box>
-                  )}
+                  )} */}
                 </>
               )}
             </Paper>
